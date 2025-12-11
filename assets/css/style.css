@@ -266,6 +266,8 @@ footer {
 
 .card,
 .service-card,
+.testimonial-card,
+.work-card,
 .contact__form,
 .checklist {
   background: rgba(17, 22, 42, 0.8);
@@ -277,6 +279,7 @@ footer {
 
 .card h3,
 .service-card h3,
+.testimonial-card h4,
 .contact__visual h3 {
   margin-top: 0;
 }
@@ -308,6 +311,46 @@ footer {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 0.5rem;
+}
+
+.work {
+  background:
+    radial-gradient(
+      circle at 60% 20%,
+      rgba(111, 209, 255, 0.1),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 30% 0%,
+      rgba(155, 140, 252, 0.14),
+      transparent 30%
+    ),
+    var(--bg);
+}
+
+.work__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.work-card__visual {
+  height: 180px;
+  border-radius: 14px;
+  margin-bottom: 1rem;
+  border: 1px solid var(--stroke);
+}
+
+.gradient-one {
+  background: linear-gradient(135deg, #ffcfdf 0%, #b0f3f1 100%);
+}
+
+.gradient-two {
+  background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+}
+
+.gradient-three {
+  background: linear-gradient(135deg, #fad0c4 0%, #ffd1ff 100%);
 }
 
 .chips {
@@ -354,6 +397,29 @@ footer {
 .stat__label {
   color: var(--muted);
   margin-top: 0.35rem;
+}
+
+.testimonials__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.testimonial-card p {
+  margin-top: 0;
+  color: var(--text);
+}
+
+.testimonial__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--muted);
+}
+
+.stars {
+  letter-spacing: 0.05em;
+  color: #ffd479;
 }
 
 .contact {
@@ -539,7 +605,9 @@ footer {
 .hero__content,
 .card,
 .service-card,
+.work-card,
 .stat,
+.testimonial-card,
 .contact__form,
 .checklist,
 .contact-link {
@@ -568,7 +636,9 @@ footer {
   .hero__content,
   .card,
   .service-card,
+  .work-card,
   .stat,
+  .testimonial-card,
   .contact__form,
   .checklist,
   .contact-link {
