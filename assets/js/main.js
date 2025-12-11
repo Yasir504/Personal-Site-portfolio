@@ -72,36 +72,62 @@ backToTop?.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
+const statNumbers = document.querySelectorAll(".stat__number");
+const formatNumber = (num) => (Number.isInteger(num) ? num : num.toFixed(1));
+
+if (!prefersReducedMotion) {
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const target = parseFloat(entry.target.dataset.target);
+        let current = 0;
+        const increment = target / 80;
+
+        const update = () => {
+          current += increment;
+          if (current >= target) {
+            entry.target.textContent = formatNumber(target);
+          } else {
+            entry.target.textContent = formatNumber(current);
+            requestAnimationFrame(update);
+          }
+        };
+
+        requestAnimationFrame(update);
+        statObserver.unobserve(entry.target);
+      }
+    });
+  });
+
+  statNumbers.forEach((num) => statObserver.observe(num));
+} else {
+  statNumbers.forEach((num) => {
+    const target = parseFloat(num.dataset.target);
+    num.textContent = formatNumber(target);
+  });
+}
+
 if (contactForm) {
   contactForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    const formData = new FormData(contactForm);
-    const name = formData.get("name")?.toString().trim();
-    const email = formData.get("email")?.toString().trim();
-    const details = formData.get("details")?.toString().trim();
-
-    if (!name || !email || !details) {
-      formStatus.textContent = "Please complete all fields before sending.";
-      return;
+    const button = contactForm.querySelector("button");
+    const originalText = button?.textContent ?? "Send";
+    if (button) {
+      button.textContent = "Message queued!";
+      button.disabled = true;
     }
-
-    const subject = `Project inquiry from ${name}`;
-    const body = `Name: ${name}\nEmail: ${email}\n\nProject details:\n${details}`;
-    const mailtoLink = `mailto:blueprintwebport@gmail.com?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(body)}`;
-
     if (formStatus) {
-      formStatus.textContent = "Opening your email client...";
+      formStatus.textContent = "Message queued! I'll reply shortly.";
     }
-
-    window.location.href = mailtoLink;
-
     setTimeout(() => {
-      if (formStatus) {
-        formStatus.textContent =
-          "If your email client didn't open, please check your pop-up or email settings.";
+      if (button) {
+        button.textContent = originalText;
+        button.disabled = false;
       }
-    }, 400);
+      if (formStatus) {
+        formStatus.textContent = "";
+      }
+      contactForm.reset();
+    }, 1600);
   });
 }
