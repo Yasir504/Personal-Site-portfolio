@@ -12,7 +12,7 @@ const prefersReducedMotion = window.matchMedia(
 ).matches;
 
 const revealTargets = document.querySelectorAll(
-  ".hero__content, .card, .service-card, .work-card, .stat, .testimonial-card, .contact__form, .checklist, .contact-link",
+  ".hero__content, .card, .service-card, .contact__form, .checklist, .contact-link",
 );
 
 if (!prefersReducedMotion) {
