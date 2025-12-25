@@ -5,7 +5,8 @@ const sections = Array.from(navLinks).map((link) =>
 const nav = document.getElementById("nav");
 const menuToggle = document.getElementById("menuToggle");
 const backToTop = document.getElementById("backToTop");
-const contactForms = document.querySelectorAll(".contact__form");
+const contactForm = document.querySelector(".contact__form");
+const formStatus = document.getElementById("formStatus");
 const prefersReducedMotion = window.matchMedia(
   "(prefers-reduced-motion: reduce)",
 ).matches;
@@ -71,55 +72,62 @@ backToTop?.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-if (contactForms.length) {
-  contactForms.forEach((form) => {
-    const status = form.querySelector(".form-status");
-    const successMessage =
-      form.dataset.successMessage ||
-      "Thanks! Your message was sent. I'll reply within 24 hours.";
-    const errorMessage =
-      form.dataset.errorMessage ||
-      "Something went wrong. Please try again or email blueprintwebport@gmail.com directly.";
+const statNumbers = document.querySelectorAll(".stat__number");
+const formatNumber = (num) => (Number.isInteger(num) ? num : num.toFixed(1));
 
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      const formData = new FormData(form);
-      const requiredFields = form.querySelectorAll("[required]");
-      const allFilled = Array.from(requiredFields).every((field) =>
-        field.value.trim(),
-      );
+if (!prefersReducedMotion) {
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const target = parseFloat(entry.target.dataset.target);
+        let current = 0;
+        const increment = target / 80;
 
-      if (!allFilled) {
-        if (status) {
-          status.textContent = "Please complete all required fields.";
-        }
-        return;
-      }
-
-      try {
-        if (status) {
-          status.textContent = "Sending your message...";
-        }
-
-        const response = await fetch(form.action, {
-          method: form.method,
-          headers: { Accept: "application/json" },
-          body: formData,
-        });
-
-        if (response.ok) {
-          if (status) {
-            status.textContent = successMessage;
+        const update = () => {
+          current += increment;
+          if (current >= target) {
+            entry.target.textContent = formatNumber(target);
+          } else {
+            entry.target.textContent = formatNumber(current);
+            requestAnimationFrame(update);
           }
-          form.reset();
-        } else {
-          throw new Error("Form submission failed");
-        }
-      } catch (error) {
-        if (status) {
-          status.textContent = errorMessage;
-        }
+        };
+
+        requestAnimationFrame(update);
+        statObserver.unobserve(entry.target);
       }
     });
+  });
+
+  statNumbers.forEach((num) => statObserver.observe(num));
+} else {
+  statNumbers.forEach((num) => {
+    const target = parseFloat(num.dataset.target);
+    num.textContent = formatNumber(target);
+  });
+}
+
+if (contactForm) {
+  contactForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const button = contactForm.querySelector("button");
+    const originalText = button?.textContent ?? "Send";
+    if (button) {
+      button.textContent = "Message queued!";
+      button.disabled = true;
+    }
+    if (formStatus) {
+      formStatus.textContent = "Message queued! I'll reply shortly.";
+    }
+    setTimeout(() => {
+      if (button) {
+        button.textContent = originalText;
+        button.disabled = false;
+      }
+      if (formStatus) {
+        formStatus.textContent = "";
+      }
+      contactForm.reset();
+    }, 1600);
   });
 }

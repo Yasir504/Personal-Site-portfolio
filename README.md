@@ -1,6 +1,6 @@
 # Personal-Site-portfolio
 
-A modern, responsive one-page portfolio for **BluePrintWebDeveloper**. Includes hero, services, and a contact section with clickable phone, email, and Instagram links.
+A modern, responsive one-page portfolio for **BluePrintWebDeveloper**. Includes hero, services, portfolio highlights, testimonials, and a contact section with clickable phone, email, and Instagram links.
 
 ## Structure
 - `index.html` — Main page markup.

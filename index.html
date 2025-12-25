@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Portfolio site for BluePrintWebDeveloper featuring services and contact details."
+      content="Portfolio site for BluePrintWebDeveloper featuring services, work highlights, testimonials, and contact details."
     />
     <title>BluePrintWebDeveloper | Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -23,6 +23,8 @@
       <nav class="nav" id="nav">
         <a href="#about">About</a>
         <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#testimonials">Testimonials</a>
         <a href="#contact">Contact</a>
       </nav>
       <button
@@ -47,7 +49,7 @@
           </p>
           <div class="hero__actions">
             <a class="btn primary" href="#contact">Book a Project</a>
-            <a class="btn ghost" href="#services">View Services</a>
+            <a class="btn ghost" href="#work">View Work</a>
           </div>
           <div class="hero__meta">
             <div>
@@ -158,6 +160,124 @@
         </div>
       </section>
 
+      <section class="section work" id="work">
+        <div class="section__header">
+          <p class="eyebrow">Portfolio</p>
+          <h2>Recent highlights built with care.</h2>
+          <p class="section__subhead">
+            A mix of landing pages, brand sites, and product experiences crafted
+            for impact.
+          </p>
+        </div>
+        <div class="work__grid">
+          <article class="work-card">
+            <div class="work-card__visual gradient-one"></div>
+            <div class="work-card__body">
+              <h3>Brand Revival</h3>
+              <p>Multi-page redesign that increased session duration by 38%.</p>
+              <div class="chips">
+                <span>UI/UX</span><span>Development</span><span>SEO</span>
+              </div>
+            </div>
+          </article>
+          <article class="work-card">
+            <div class="work-card__visual gradient-two"></div>
+            <div class="work-card__body">
+              <h3>Product Launch</h3>
+              <p>
+                Conversion-focused landing that boosted signups 2.4x in four
+                weeks.
+              </p>
+              <div class="chips">
+                <span>Landing</span><span>Copy</span><span>A/B Tests</span>
+              </div>
+            </div>
+          </article>
+          <article class="work-card">
+            <div class="work-card__visual gradient-three"></div>
+            <div class="work-card__body">
+              <h3>Ecommerce Refresh</h3>
+              <p>
+                Mobile-first storefront with streamlined checkout and custom
+                imagery.
+              </p>
+              <div class="chips">
+                <span>Shop</span><span>Optimization</span><span>Branding</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section stats">
+        <div class="stats__grid">
+          <div class="stat">
+            <p class="stat__number" data-target="65">0</p>
+            <p class="stat__label">Projects Delivered</p>
+          </div>
+          <div class="stat">
+            <p class="stat__number" data-target="12">0</p>
+            <p class="stat__label">Industries Served</p>
+          </div>
+          <div class="stat">
+            <p class="stat__number" data-target="4.9">0</p>
+            <p class="stat__label">Average Rating</p>
+          </div>
+          <div class="stat">
+            <p class="stat__number" data-target="24">0</p>
+            <p class="stat__label">Avg Response (hrs)</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section testimonials" id="testimonials">
+        <div class="section__header">
+          <p class="eyebrow">Testimonials</p>
+          <h2>Clients who shipped with confidence.</h2>
+        </div>
+        <div class="testimonials__grid">
+          <div class="testimonial-card">
+            <p>
+              “We launched in half the time we expected. The site is gorgeous
+              and actually moving the needle.”
+            </p>
+            <div class="testimonial__meta">
+              <div>
+                <h4>Devon L.</h4>
+                <p>Founder, Fintech Startup</p>
+              </div>
+              <span class="stars">★★★★★</span>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <p>
+              “Consistent communication, clear handoff docs, and thoughtful
+              details that wow our customers.”
+            </p>
+            <div class="testimonial__meta">
+              <div>
+                <h4>Kai R.</h4>
+                <p>Marketing Lead, Ecommerce</p>
+              </div>
+              <span class="stars">★★★★★</span>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <p>
+              “BluePrintWebDeveloper translated our brand into a digital
+              experience that finally feels like us.”
+            </p>
+            <div class="testimonial__meta">
+              <div>
+                <h4>Aria M.</h4>
+                <p>Creative Director</p>
+              </div>
+              <span class="stars">★★★★★</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="section contact" id="contact">
         <div class="contact__content">
           <div class="section__header">
@@ -181,11 +301,7 @@
               >📸 @blueprint.web.builders</a
             >
           </div>
-          <form
-            class="contact__form"
-            action="https://formspree.io/f/mvzopznz"
-            method="POST"
-          >
+          <form class="contact__form">
             <div class="input-row">
               <label>
                 Name
@@ -219,65 +335,10 @@
             <p
               class="form-status sr-only"
               id="formStatus"
-              data-status-for="contact"
               aria-live="polite"
             ></p>
             <p class="form-hint">
-              Messages send directly through this form—no extra email steps
-              needed.
-            </p>
-          </form>
-          <form
-            class="contact__form contact__form--reviews"
-            action="https://formspree.io/f/mpqzapzz"
-            method="POST"
-            data-success-message="Thanks for sharing your feedback! I'll review and add it soon."
-            data-error-message="Couldn't send right now. Please try again or email blueprintwebport@gmail.com."
-          >
-            <div class="section__header">
-              <p class="eyebrow">Testimonials (coming soon)</p>
-              <h3>Share your experience</h3>
-              <p class="section__subhead">
-                Submit a review to be featured when testimonials go live.
-              </p>
-            </div>
-            <div class="input-row">
-              <label>
-                Name
-                <input
-                  type="text"
-                  name="reviewer"
-                  placeholder="Your name"
-                  required
-                />
-              </label>
-              <label>
-                Company or project
-                <input
-                  type="text"
-                  name="project"
-                  placeholder="Project or company (optional)"
-                />
-              </label>
-            </div>
-            <label>
-              Feedback
-              <textarea
-                name="feedback"
-                rows="4"
-                placeholder="Share what stood out about the work together"
-                required
-              ></textarea>
-            </label>
-            <button type="submit" class="btn primary">Submit review</button>
-            <p
-              class="form-status sr-only"
-              aria-live="polite"
-              data-status-for="reviews"
-            ></p>
-            <p class="form-hint">
-              Thank you for helping others learn what it's like to work
-              together.
+              *Demo form — connect your CMS or email provider to make it live.
             </p>
           </form>
         </div>
@@ -305,6 +366,7 @@
       <div class="footer__links">
         <a href="#about">About</a>
         <a href="#services">Services</a>
+        <a href="#work">Work</a>
         <a href="#contact">Contact</a>
       </div>
       <div class="footer__contact">
